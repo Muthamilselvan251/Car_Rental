@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CarRental</title>
+    {% load static %}
+    <script  src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
+    <link rel="stylesheet" href="static 'bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static 'fontawesome/fontawesome/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+    <style>
+
+        .sasi {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sasi h1 {
+            margin: 0;
+            font-size: 2rem;
+
+        }
+        .sasi h1 span {
+            font-size: 1.5rem;
+            color: #6c757d;
+        }
+        .book {
+            font-size: 100%;
+            font-family: clinton;
+            border: 1px solid black;
+            width: 180px;
+            height: 50px;
+            background-color: #0096c7;
+            color: white;
+            margin-top: 20px;
+        }
+        .book:hover {
+            border: 1px solid black;
+            box-shadow: 2px 6px 20px 5px #00b4d8;
+
+        }
+        /* .img1 {
+            margin-top: 20px;
+        } */
+        @media (max-width: 768px) {
+            .d-flex.justify-content-around {
+                flex-direction: column;
+                align-items: center;
+            }
+            .img1 img {
+                width: 100%;
+                height: auto;
+            }
+            .sasi h1 {
+                font-size: 1.5rem; /* Adjust font size for smaller screens */
+            }
+            .sasi h1 span {
+                font-size: 1rem; /* Adjust font size for smaller screens */
+            }
+        }
+
+        .bt{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .span{
+            font-size: 12px;
+            color: #0096c7;
+        }
+       .navbar-brand{
+        color: #f35b04;
+        font-size: 30px;
+
+       }
+
+       .dis{
+        display: grid;
+        text-align: center;
+       }
+
+       .nav-link:hover{
+    border-radius: 5px;
+/* <!--    box-shadow: 1px 1px 20px 1px #bbdefb;--> */
+    color: #000000;
+    transform: scale(1.1);
+    }
+    .img-fluid{
+        filter: drop-shadow(10px 5px 70px #8d99ae);
+    }
+
+
+        body {
+            background-color: #ffffff;
+        }
+        h3 {
+            color: #fb5607;
+            font-size: 25px; /* Increased font size */
+        }
+        h4 {
+            color: #0096c7;
+            font-size: 20px; /* Increased font size */
+        }
+        button {
+            margin-top: 5px;
+            width: 120px; /* Increased width */
+            height: 40px; /* Increased height */
+            border-radius: 2px;
+            font-size: 18px; /* Increased font size */
+        }
+        button:hover {
+            box-shadow: 2px 2px 15px 2px #00b4d8;
+        }
+        a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 20px; /* Increased font size */
+        }
+        a:hover {
+            box-shadow: 1px 1px 20px 1px #bbdefb;
+            color: #000000;
+
+        }
+
+        .border:hover {
+            box-shadow: 2px 2px 15px 2px #84a59d;
+        }
+
+        .card-title {
+            font-size: 20px; /* Increased font size */
+        }
+        .text-warning i {
+            font-size: 20px; /* Increased star icon size */
+        }
+        .price {
+            font-size: 18px; /* Increased font size */
+        }
+        .per-day {
+            font-size: 14px; /* Increased font size */
+        }
+        .card-details i {
+            font-size: 22px; /* Increased icon size */
+        }
+        .card-details {
+            font-size: 18px; /* Increased text size */
+            display:grid;
+            grid-template-columns:auto auto auto auto
+        }
+        .nav-link{
+        font-size:18px;
+        }
+        .tk{
+        margin-left: 200px;
+        }
+
+        .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+   .card:hover {
+    transform: translateY(-10px) scale(1.1); /* Move the card up */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Add a shadow */
+        }
+        .btn{
+        cursor: pointer;
+  transition: all 0.3s ease;
+        }
+        .btn:hover{
+         transform: scale(1.05);
+        }
+        .paragraph{
+        width: 600px;
+        height: 100px;
+        margin-top: 20px;
+        font-size: 20px;
+        }
+        .form-container {
+            margin-top: -250px;
+            width: 800px;
+            height: 450px;
+            padding: 50px;
+            border: 3px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: ##ffe4e1;
+            transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* Form container hover effect */
+        .form-container:hover {
+            border-color: #ff6347;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        label{
+        font-size: 15px;
+        }
+
+        /* Input fields */
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            font-size: 15px;
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        /* Input field focus */
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            border-color: dodgerblue;
+        }
+
+        /* Submit button */
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6347;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        /* Submit button hover */
+        .form-group input[type="submit"]:hover {
+            background-color: #ff4500;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+
+        /* Background for the iframe paragraph container */
+        .iframe-container {
+            background-color: #f8f9fa; /* Light grey background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .contact-info {
+        margin-top: 20px;
+    }
+    .contact-item {
+        margin-bottom: 10px;
+    }
+    .contact-icon {
+        font-size: 15px;
+        color: #0096c7;
+        margin-right: 5px;
+    }
+    .contact-link {
+        font-size: 15px;
+        color: #0096c7;
+        text-decoration: none;
+    }
+    .contact-link:hover {
+        text-decoration: underline;
+    }
+    .benefits-list {
+        margin-top: -60px;
+        list-style-type: disc;
+        padding-left: 20px;
+        font-size: 18px;
+        color: #000;
+    }
+    .testimonial1 {
+        margin-top: -50px;
+        font-size: 16px;
+        font-style: italic;
+        color: #555;
+        border-left: 5px solid #0096c7;
+        padding-left: 10px;
+    }
+        .testimonial2 {
+        margin-top: 10px;
+        font-size: 16px;
+        font-style: italic;
+        color: #555;
+        border-left: 5px solid #0096c7;
+        padding-left: 10px;
+    }
+
+    </style>
+<body>
+{% block content %}
+<div>
+        <div>
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light   ">
+                    <div class="container">
+                        <div class="dis">
+                        <h1 class="navbar-brand">Car|Rental</h1>
+                        <span class="span" style="margin-top: -10px;">PREMIUM CAR RENTAL</span>
+                    </div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-nav navbar-collapse justify-content-evenly " id="navbarNav">
+
+                                <li class="nav-item">
+                                    <a href="{% url 'Home' %}" class="nav-link active" aria-current="page">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'rentcar' %}" class="nav-link">Rent Car</a>
+                                </li >
+                                <li class="nav-item">
+                                    <a href="{% url 'aboutus' %}" class="nav-link">About Us</a>
+                                </li>
+                                <li class="nav-item nav-item nav nav-link active" aria-current="page">
+                                    <a href="#" class="nav-link">Contact Us</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <form action="{% url 'register' %}" class="d-inline">
+                                        <button class="btn btn-outline-primary" style="font-size: medium;">Register</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                    <form action="{% url 'login' %}" class="d-inline">
+                                        <button class="btn btn-outline-success" type="submit" style="font-size: medium;">Log in</button>
+                                    </form>
+                                </li>
+
+                        </div>
+                    </div>
+                </nav>
+                <div class="d-flex justify-content-around align-items-center mt-5  container">
+                    <div>
+    <h3 style="margin-top: 10px; color: #fb5607;">Need additional information?</h3>
+    <p class="paragraph">A multifaceted professional skilled in multiple fields of research, development as well as a learning specialist. Over 15 years of experience.</p>
+
+    <div class="contact-info">
+        <div class="contact-item">
+            <span class="contact-icon">&#9989;</span>
+            <a href="tel:+918220954353" class="contact-link">Call Us: (562) 498-4600</a>
+        </div>
+        <div class="contact-item">
+            <span class="contact-icon">&#9989;</span>
+            <a href="mailto:example@example.com?subject=Feedback&body=Hi%20there," class="contact-link">Email Us: yz@carrental.com</a>
+        </div>
+        <div class="contact-item">
+            <span class="contact-icon">&#9989;</span>
+            <a href="https://www.google.com/maps?q=1600+Amphitheatre+Parkway,+Mountain+View,+CA" class="contact-link">Visit Us: 61, VKK Menon Rd, Siddhapudur, New Siddhapudur, Coimbatore, Tamil Nadu 641044</a>
+        </div>
+    </div>
+
+    <h3 style="margin-top: 20px; color: #fb5607;">Why Choose Us?</h3>
+    <p class="paragraph">Our car rental services offer a wide range of benefits, including:</p>
+    <ul class="benefits-list">
+        <li>Extensive fleet of vehicles to suit every need</li>
+        <li>Competitive pricing with no hidden fees</li>
+        <li>24/7 customer support to assist you anytime</li>
+        <li>Convenient booking process both online and offline</li>
+        <li>Flexible rental terms to accommodate your schedule</li>
+        <li>Exclusive discounts for loyal customers</li>
+    </ul>
+
+    <h3 style="margin-top: 20px; color: #0096c7;">Testimonials</h3>
+    <p class="paragraph">Here’s what our satisfied customers have to say:</p>
+    <blockquote class="testimonial1">
+        "CarRental provided an excellent service. The car was in perfect condition and the customer service was outstanding. Highly recommend!" - John Doe
+    </blockquote>
+    <blockquote class="testimonial2">
+        "I have rented cars from various companies, but CarRental stands out for its professionalism and quality of service. Will definitely use again." - Jane Smith
+    </blockquote>
+</div>
+                    <div class="form-container">
+                        <form action="" method='POST'>
+                             {% csrf_token %}
+                            <div class="form-group">
+                                <label id="fullname">Full Name</label>
+                                <input type="text" class="form-control" placeholder="Name" name="fullname" required>
+                            </div>
+                            <div class="form-group">
+                                <label id="Email">Email</label>
+                                <input type="email" class="form-control" placeholder="xyz@gmail.com" name="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" placeholder="Write your message here..." name="tellme" required></textarea>
+                            </div>
+                            <div class="form-group text-center" style="font-size: 15px;">
+                                <a href="{% url 'send_message' %}">
+                                    <input type="submit" value="Send Message">
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="iframe-container">
+                    <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125322.44173059512!2d76.88483254244228!3d11.01412629744167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859af2f971cb5%3A0x2fc1c81e183ed282!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1718114872184!5m2!1sen!2sin" width="1150" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+                </div>
+            </div>
+        </div>
+</div>
+{% if messages %}
+<div id="successMessage" class="alert alert-success" style="display: none;">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</div>
+{% endif %}
+
+</body>
+{% endblock %}
+</html>

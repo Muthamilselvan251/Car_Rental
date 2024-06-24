@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <title>Reservation Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow */
+            animation: slideFadeIn 1s ease-in-out;
+        }
+        @keyframes slideFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        p {
+            text-align: center;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+         }
+        #qr-code {
+            margin-top: 20px;
+        }
+        .qr-code-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+{% block content %}
+    <div class="container">
+        <h1>Reservation Successful!</h1>
+
+       {% if days_difference %}
+            <div>
+                <p>Days: {{ days_difference }}</p>
+            </div>
+        {% endif %}
+
+        {% if total_price %}
+            <div class="alert alert-success">
+                <p>Total Price: RS.{{ total_price }}</p>
+            </div>
+        {% endif %}
+<!--        <p>Your reservation has been successfully submitted. We'll get back to you shortly.</p>-->
+         <h3 class="text-center">Scan to Pay</h3>
+<!--        <img src="{% static 'img/QR_CODE.png' %}" alt="QR Code" style="width: 250px; height:250px; margin-left:225px;" id="qr-code">-->
+        <div class="qr-code-container">
+<!--        <img src="{% static 'img/QR_CODE.png' %}" alt="QR Code" style="width: 250px; height:250px; margin-left:225px;" id="qr-code">-->
+            <canvas id="qr-code"></canvas>
+        </div>
+        <script>
+            var qr = new QRious({
+                element: document.getElementById('qr-code'),
+                size: 200,
+                value: 'upi://pay?pa={{ upi_id }}&pn={{ name }}&am={{ total_price }}&cu=INR&n=<indian_bank>'
+            });
+        </script>
+        <div class="btn-container">
+            <a href="{% url 'Home' %}">
+                <button class="btn">Go to Home</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Animation for success message
+        document.addEventListener('DOMContentLoaded', function() {
+            var message = document.getElementById('message');
+            setTimeout(function() {
+                message.style.opacity = '1';
+                message.style.transform = 'translateY(0)';
+            }, 500);
+        });
+    </script>
+{% endblock %}
+</body>
+</html>
